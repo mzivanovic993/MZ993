@@ -1,0 +1,68 @@
+﻿@model AppProdMZ.Models.ProductModel
+@using AppProdMZ.Models;
+@{
+	ViewBag.Title = "Home Page";
+	List<Product> products = Model.ShowAllProduct();
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<body>
+	</div>@Html.ActionLink("Create New", "Create")</div>
+	<table id="productsList" class="display" cellspacing="0" width="100%">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Category</th>
+				<th>Producer</th>
+				<th>Supplier</th>
+				<th>Price</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			@if (products == null && products.Count == 0)
+			{
+				<tr>
+					<td>
+						No records to show
+					</td>
+				</tr>
+			}
+			else
+			{
+				foreach (var item in products)
+				{
+					<tr>
+						<td>
+							@item.Name
+						</td>
+						<td>
+							@item.Description
+						</td>
+						<td>
+							@item.Category
+						</td>
+						<td>
+							@item.Producer
+						</td>
+						<td>
+							@item.Supplier
+						</td>
+						<td>
+							@item.Price
+						</td>
+						<td>
+							@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+							@Html.ActionLink("Delete", "Delete", new { id = item.Id })
+						</td>
+					</tr>
+				}
+			}
+		</tbody>
+	</table>
+</body>
+</html>
